@@ -37,7 +37,7 @@ fn build_ui(application: &gtk4::Application) {
     let check_buttons = countries.iter().map(|country| {
         let mut mutex_guard = VALUES.lock().unwrap();
         mutex_guard.insert(country, false);
-        let check_button = gtk4::CheckButton::builder().label(&country).build();
+        let check_button = gtk4::CheckButton::builder().label(&**country).build();
         check_button.connect_toggled(|check_button| {
             let mut mutex_guard = VALUES.lock().unwrap();
             mutex_guard.insert(country, check_button.is_active());
